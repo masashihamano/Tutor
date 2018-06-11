@@ -22,6 +22,11 @@ gem 'pry-stack_explorer'
 gem 'bootstrap-sass'
 # jqueryの導入(bootstrapに必要)
 gem 'jquery-rails'
+# ログイン機能を簡単に作成
+gem 'devise'
+# flash機能
+gem 'toastr-rails'
+
 
 
 

@@ -2,14 +2,36 @@
 <html>
   <head>
     <title>Tutor</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
   </head>
 
   <body>
+
     <%= yield %>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <!-- flashにメッセージがある時(empty(空)では無い時)に以下を発動 -->
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+        // flash[:notice] = "Signed in successfully!."
+        // f[0] = :notice, f[1] = "Signed in successfully!."
+            //noticeをstring(to_s)に変換
+            //alertをerrorに置き換える(gsub:指定の文字列に変換)
+            //noticeをinfoに置き換える(gsub:指定の文字列に変換)
+            //toastはinfo,success,warning,errorしか無い
+            //flashはnoticeだから、toastには無いためinfoに変換している
+          <% type = f[0].to_s.gsub('alert','error').gsub('notice','info') %>
+            // typeはf[0]を変換したもの→infoになる
+          toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+      </script>
+    <% end %>
+
   </body>
 </html>
