@@ -26,6 +26,8 @@ gem 'jquery-rails'
 gem 'devise'
 # flash機能
 gem 'toastr-rails'
+# facebookログイン機能
+gem 'omniauth-facebook'
 
 
 

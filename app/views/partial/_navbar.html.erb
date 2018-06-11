@@ -25,12 +25,26 @@
           <li><%= link_to "ログイン", new_user_session_path %><li>
 
         <% else %>
+        <!-- ログインしている時 -->
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.email %>
-            </a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <!-- 認証ログイン(facebookログイン)している時 -->
+          <% if current_user.provider %>
+            <%= image_tag current_user.image, class:"img-circle profile-0" %>
+            <%= current_user.name %>
+          <% else %>
+            <% current_user.email %>
+          <% end %>
+            <span class="caret"></span>
+          </a>
+
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <!-- ログインしている時 -->
+            <li><%= link_to "プロフィール", user_path(current_user) %></li>
+            <!-- (current_user)と記述することによって、currentuserのidパスを取得できる -->
+            <li><%= link_to "プロフィール編集", edit_user_registration_path %></li>
+            <li><%= link_to "マネジメント情報", "#" %></li>
+            <li><%= link_to "教わる日", "#" %></li>
+            <li><%= link_to "教える日", "#" %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>

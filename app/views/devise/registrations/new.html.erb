@@ -37,6 +37,9 @@
 
       <%= render "devise/shared/links" %>
 
+      <%= link_to "facebookアカウントでログイン", user_facebook_omniauth_authorize_path, class:"btn btn-facebook btn-lg" %>
+      <!-- user_facebook_omniauth_authorize_path(:facebook)←仕様変更 -->
+
     </div>
   </div>
 </div>
