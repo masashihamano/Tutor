@@ -27,7 +27,7 @@
         </li>
 
         <li class="<%= 'active' if controller?("sharings") && action?("photos") %>" id = "nav-photos" >
-          <%= link_to "写真", manage_sharing_photos_path(@sharing), data:{no_turbolinks: true} %>
+          <%= link_to "写真", manage_sharing_photos_path(@sharing), data:{turbolinks: false} %>
           <!-- data:{no_turbolink: true} だとエラーになる-->
         </li>
 

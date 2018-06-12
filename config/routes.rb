@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
+  resources :photos, only: [:create, :destroy] do
+    collection do
+      get :list
+    end
+  end
+
   get 'manage-sharing/:id/basics', to: 'sharings#basics', as: 'manage_sharing_basics'
   get 'manage-sharing/:id/description', to: 'sharings#description', as: 'manage_sharing_description'
   get 'manage-sharing/:id/address', to: 'sharings#address', as: 'manage_sharing_address'

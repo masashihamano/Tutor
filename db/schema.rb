@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_072444) do
+ActiveRecord::Schema.define(version: 2018_06_12_104640) do
+
+  create_table "photos", force: :cascade do |t|
+    t.integer "sharing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["sharing_id"], name: "index_photos_on_sharing_id"
+  end
 
   create_table "sharings", force: :cascade do |t|
     t.string "home_type"

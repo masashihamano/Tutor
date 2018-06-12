@@ -28,7 +28,12 @@ gem 'devise'
 gem 'toastr-rails'
 # facebookログイン機能
 gem 'omniauth-facebook'
-
+# ファイルをアップロードする機能
+gem "paperclip", "~> 6.0.0"
+# ドラッグ & ドロップによるファイルアップロード機能
+gem 'dropzonejs-rails'
+# gitにupした時のkey情報を暗号化する(config/locales/application.yml)と(devise.rb)
+gem "figaro", "~> 1.1.0"
 
 
 
