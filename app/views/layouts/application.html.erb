@@ -13,8 +13,9 @@
 
     <%= yield %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+<!-- 下のscriptでnotice、alartを作成している -->
+    <!-- <p class="notice"><%#= notice %></p>
+    <p class="alert"><%#= alert %></p> -->
 
     <!-- flashにメッセージがある時(empty(空)では無い時)に以下を発動 -->
     <% unless flash.empty? %>

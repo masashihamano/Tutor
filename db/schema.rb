@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_123840) do
+ActiveRecord::Schema.define(version: 2018_06_12_072444) do
+
+  create_table "sharings", force: :cascade do |t|
+    t.string "home_type"
+    t.string "pet_type"
+    t.string "pet_size"
+    t.integer "breeding_years"
+    t.string "address"
+    t.string "sharing_title"
+    t.text "sharing_content"
+    t.integer "price"
+    t.boolean "active"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sharings_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

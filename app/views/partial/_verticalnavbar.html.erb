@@ -1,0 +1,51 @@
+<div class="sidebar-nav">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+        <label style="color: #fff;">他の項目を編集する</label>
+      </button>
+    </div>
+
+    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <!-- このpathにはidがあるので、識別するために(@sharing)をつける -->
+        <!-- Helperでcontrollerとactionを定義している(ApplicationHelperなので全てに適用) -->
+        <li class="<%= 'active' if controller?("sharings") && action?("basics") %> sharing-checked" id = "nav-basics" >
+          <%= link_to "基本事項", manage_sharing_basics_path(@sharing) %>
+        </li>
+
+        <li class="<%= 'active' if controller?("sharings") && action?("description") %>" id = "nav-description" >
+          <%= link_to "ペットの紹介", manage_sharing_description_path(@sharing) %>
+        </li>
+
+        <li class="<%= 'active' if controller?("sharings") && action?("address") %>" id = "nav-address" >
+          <%= link_to "住所情報", manage_sharing_address_path(@sharing) %>
+        </li>
+
+        <li class="<%= 'active' if controller?("sharings") && action?("price") %>" id = "nav-price" >
+          <%= link_to "料金", manage_sharing_price_path(@sharing) %>
+        </li>
+
+        <li class="<%= 'active' if controller?("sharings") && action?("photos") %>" id = "nav-photos" >
+          <%= link_to "写真", manage_sharing_photos_path(@sharing), data:{no_turbolinks: true} %>
+          <!-- data:{no_turbolink: true} だとエラーになる-->
+        </li>
+
+        <li class="<%= 'active' if controller?("sharings") && action?("calendar") %>">
+          <%= link_to "カレンダー", manage_sharing_calendar_path(@sharing) %>
+        </li>
+
+        <li class="<%= 'active' if controller?("sharings") && action?("bankaccount") %>" id = "nav-bankaccount" >
+          <%= link_to "受取口座情報", manage_sharing_bankaccount_path(@sharing) %>
+        </li>
+
+        <li class="<%= 'active' if controller?("sharings") && action?("publish") %>" id = "nav-publish" >
+          <%= link_to "公開する", manage_sharing_publish_path(@sharing) %>
+        </li>
+
+
+
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
