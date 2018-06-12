@@ -43,8 +43,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # 本番環境
 group :production do
+  # PostgreSQLにアクセスするためのライブラリ
   gem 'pg', '~> 0.20.0'
-  # gem 'pg'
+  # Herokuを本番環境のサーバ上で動かす機能
   gem 'rails_12factor'
 end
 

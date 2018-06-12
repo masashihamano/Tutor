@@ -93,5 +93,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #本番環境の時にはlocalhostを変更する
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'http://Tutor.herokuapp.com' }
 end
