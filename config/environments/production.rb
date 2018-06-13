@@ -94,4 +94,19 @@ Rails.application.configure do
 
   #本番環境の時にはlocalhostを変更する
   config.action_mailer.default_url_options = { host: 'http://Tutor.herokuapp.com' }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_protocol: :https,
+    s3_credentials: {
+      bucket: ENV.fetch('S3_BUCKET_NAME'),
+      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+      s3_region: ENV.fetch('AWS_REGION'),
+    }
+  }
+
+
+config.secret_key = 'bf684a35dc0c69265ea9accdb4a4ce2466f3bb425ded8536dcc628ba8f73c2a00728d21e962e3cba4753e79d872f2a346eeebb67175613a5df72d3d176ec804c'
+
 end

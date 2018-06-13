@@ -3,6 +3,16 @@
 @import "toastr";
 @import "dropzone/dropzone";
 
+.main {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  background-color: #f5f8fa;
+  background-image: url("/background.jpg");
+  padding-top: 20px;
+}
 
 .navbar-brand {
   color: #fff;
