@@ -34,8 +34,10 @@ gem "paperclip", "~> 6.0.0"
 gem 'dropzonejs-rails'
 # gitにupした時のkey情報を暗号化する(config/locales/application.yml)と(devise.rb)
 gem "figaro", "~> 1.1.0"
-# awsのs3機能
-gem 'aws-sdk', '~> 2.3'
+# awsのs3機能 '2.3'だとエラーになる
+gem 'aws-sdk', '~> 3.0'
+# googleマップを導入
+gem 'geocoder'
 
 
 

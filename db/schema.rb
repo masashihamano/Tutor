@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_104640) do
+ActiveRecord::Schema.define(version: 2018_06_13_112703) do
 
   create_table "photos", force: :cascade do |t|
     t.integer "sharing_id"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 2018_06_12_104640) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.index ["sharing_id"], name: "index_photos_on_sharing_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "sharing_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "price"
+    t.integer "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sharing_id"], name: "index_reservations_on_sharing_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "sharings", force: :cascade do |t|
@@ -36,6 +49,8 @@ ActiveRecord::Schema.define(version: 2018_06_12_104640) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_sharings_on_user_id"
   end
 

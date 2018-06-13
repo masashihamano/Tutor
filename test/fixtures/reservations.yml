@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  sharing: one
+  start_date: 2018-06-13 20:27:03
+  end_date: 2018-06-13 20:27:03
+  price: 1
+  total_price: 1
+
+two:
+  user: two
+  sharing: two
+  start_date: 2018-06-13 20:27:03
+  end_date: 2018-06-13 20:27:03
+  price: 1
+  total_price: 1

@@ -1,2 +1,223 @@
-<h1>Sharings#show</h1>
-<p>Find me in app/views/sharings/show.html.erb</p>
+<%= render 'partial/navbar' %>
+
+<!-- 1.ジャンボトロン(画像) -->
+<div class="jumbotron row-space-0" style="margin-top: -20px; background: none; height: 420px;">
+
+  <!-- カルーセル(画像のスライド機能(画像が複数ある場合)) -->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- リストの点を表示させる条件分岐 -->
+    <% if @photos.length > 1 %>
+      <ol class="carousel-indicators">
+        <% @photos.each do |photo| %>
+          <li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
+        <% end %>
+      </ol>
+    <% end %>
+
+    <!-- ここで画像表示の繰り返し処理を行っている -->
+    <div class="carousel-inner" role="listbox">
+      <% if @photos %>
+        <% @photos.each do |photo| %>
+          <div class="item <%= 'active' if photo.id == @photos[0].id %>">
+            <%= image_tag photo.image.url(),style: "height:420px; width:100%; overflow:hidden;" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- 左右の矢印を表示させる条件分岐 -->
+    <% if @photos.length > 1%>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    <% end %>
+  </div>
+
+</div>
+
+<!-- 2.サマリー(sharingのデータ内容) -->
+<div class="container-fluid container-listing-show">
+  <div class="container">
+    <div class="listing-summary row-space-3 row-space-top-3">
+      <div class="row">
+        <div class="col-md-3 text-center row-space-2">
+          <%= link_to user_path(@sharing.user) do %>
+            <% if @sharing.user.image.present? %>
+              <%= image_tag @sharing.user.image,class:"img-circle profile-2" %>
+            <% end %>
+          <% end %>
+          <h5><%= @sharing.user.name %></h5>
+        </div>
+        <div class="col-md-6">
+        <div class="listing-title" style="font-size:24px;">
+          <%= @sharing.sharing_title %>
+        </div>
+          <div class="row row-space-top-4">
+            <div class="col-sm-3 col-xs-3 text-center">
+              <i class="fa fa-home fa-3x"></i>
+              <h5><%= @sharing.home_type %></h5>
+            </div>
+            <div class="col-sm-3 col-xs-3 text-center">
+              <i class="fa fa-linux fa-3x" aria-hidden="true"></i>
+              <h5><%= @sharing.pet_type %></h5>
+            </div>
+            <div class="col-sm-3 col-xs-3 text-center">
+              <i class="fa fa-bug fa-3x" aria-hidden="true"></i>
+              <h5><%= @sharing.pet_size %></h5>
+            </div>
+            <div class="col-sm-3 col-xs-3 text-center">
+              <i class="fa fa-clock-o fa-3x" aria-hidden="true"></i>
+              <h5><%= @sharing.breeding_years %>年</h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- 予約フォーム -->
+        <div class="col-md-3">
+          <div class="panel panel-default panel-show">
+            <div class="panel-heading">
+              <span style="font-size:16px;"><%= @sharing.price %>円（一晩あたり）</span>
+            </div>
+
+            <div class="panel-body panel-real">
+              <!-- ルーティングを入れ子にしているのでパスが@sharingの書き方となる -->
+              <!-- ここでstripeの決済newアクションとページへ飛ぶ -->
+
+              <%= form_for @sharing, :html => { multipart: true } do |f| %>
+
+              <div class="actions text-center">
+                <%= f.submit "この日程で予約する", class: "btn btn-danger btn-wide" %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3.メインコンテント -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h3 class="row-space-3">このペットについて</h3>
+      <p><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %>
+      </p>
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+  </div>
+
+  <!-- レビュー    -->
+  <div class="row">
+    <div class="col-md-9">
+      <h3 class="row-space-3">レビュー</h3>
+
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+  </div>
+
+
+  <!-- google map   -->
+  <div class="row">
+    <div class="col-md-9">
+      <h3 class="row-space-3">アクセス</h3>
+      <div id="map"></div>
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+  </div>
+  <style>
+    #map {
+      width: 100%;
+      height: 350px;
+    }
+  </style>
+
+  <!-- 近くのシェアペット   -->
+  <div class="row">
+    <div class="col-md-9">
+      <h3 class="row-space-3">近くのシェアペット</h3>
+
+      <% for sharing in @sharing.nearbys(10) %>
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading panel-listing text-center" style="padding: 0;">
+              <%= link_to(sharing) do %>
+                <%= image_tag sharing.photos[0].image.url(:medium)  if sharing.photos.length > 0 %>
+              <% end %>
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-9 col-xs-9">
+                  <%= link_to sharing.sharing_title, sharing %><br>
+                </div>
+                <div class="col-md-3 col-xs-3">
+                <% if sharing.user.image.present? %>
+                  <%= image_tag sharing.user.image,class:"img-circle profile-1" %>
+                <% end %>
+                </div>
+                <div class="price-card">
+                  <%= sharing.price %> 円
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+function initMap() {
+  // Create the map.マップ全体を作成
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: {lat: <%= @sharing.latitude %>, lng:<%= @sharing.longitude %>},
+    mapTypeId: 'terrain'
+  });
+
+  // Construct the circle for each value in citymap.
+  // Note: We scale the area of the circle based on the population.
+  // Add the circle for this city to the map.サークルを作成
+  var cityCircle = new google.maps.Circle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    map: map,
+    center: {lat: <%= @sharing.latitude %>, lng:<%= @sharing.longitude %>},
+    radius: 500
+  });
+
+  }
+
+</script>
+
+<!-- googleマップ -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKLzAYsoEoxsjpAi2LJVAxqAQyQLjr4Oo&callback=initMap">
+</script>

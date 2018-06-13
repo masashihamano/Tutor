@@ -34,7 +34,8 @@
             <%= image_tag current_user.image, class:"img-circle profile-0" %>
             <%= current_user.name %>
           <% else %>
-            <% current_user.email %>
+            <% current_user.email.split("@")[0] %>
+            <!-- split("@")[0]で@より前の部分の名前を表示 -->
           <% end %>
             <span class="caret"></span>
           </a>
@@ -43,7 +44,7 @@
             <li><%= link_to "プロフィール", user_path(current_user) %></li>
             <!-- (current_user)と記述することによって、currentuserのidパスを取得できる -->
             <li><%= link_to "プロフィール編集", edit_user_registration_path %></li>
-            <li><%= link_to "シェアリング管理", "#" %></li>
+            <li><%= link_to "シェアリング管理", sharings_path %></li>
             <li><%= link_to "予約した日", "#" %></li>
             <li><%= link_to "予約された日", "#" %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>

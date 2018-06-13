@@ -8,9 +8,11 @@ class SharingsController < ApplicationController
 
 
   def index
+    @sharings = current_user.sharings
   end
 
   def show
+    @photos = @sharing.photos
   end
 
   def new
@@ -79,7 +81,7 @@ class SharingsController < ApplicationController
 
   # Sharingモデルのidナンバーを探して@sharingに代入
   def sharing_params
-    params.require(:sharing).permit(:home_type, :pet_type, :breeding_years, :pet_size, :price)
+    params.require(:sharing).permit(:home_type, :pet_type, :breeding_years, :pet_size, :price, :address, :sharing_title, :sharing_content, :active)
   end
 
   def set_sharing

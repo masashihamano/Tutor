@@ -94,75 +94,141 @@
   background-color: #4c66a4;
 }
 
-// プロフィールページと画像
+// // プロフィールページと画像
+// .profile-0 {
+//   width: 28px;
+//   height: 28px;
+// }
+//
+// .profile-1 {
+//   width: 50px;
+//   height: 100px;
+// }
+//
+// .profile-2 {
+//   width: 100px;
+//   height: 100px;
+// }
+//
+// .profile-full {
+//   width: 30%;
+// }
+//
+// // 992pxより大きいときは100%にする、それ以外は30%
+// @media (min-width: 992px){
+// .profile-full {
+//         width: 100%;
+//     }
+// }
+//
+// .row-space-1 {
+//   margin-bottom: 10px;
+// }
+//
+// .row-space-2 {
+//   margin-bottom: 15px;
+// }
+//
+// .row-space-3 {
+//   margin-bottom: 20px;
+// }
+//
+// .row-space-4 {
+//   margin-bottom: 25px;
+// }
+//
+// // 992pxより大きいときは100%にする、それ以外は30%
+// @media (min-width: 992px){
+// .profile-full {
+//         width: 100%;
+//     }
+// }
+//
+// .row-space-1 {
+//   margin-bottom: 10px;
+// }
+//
+// .row-space-2 {
+//   margin-bottom: 15px;
+// }
+//
+// .row-space-3 {
+//   margin-bottom: 20px;
+// }
+//
+// .row-space-4 {
+//   margin-bottom: 25px;
+// }
+
+// ここからrow-space類(プロフィールページと画像を上書き)
+.row-space-top-0 {
+  margin-top: 0px;
+}
+
+.row-space-top-1 {
+  margin-top: 10px;
+}
+
+.row-space-top-2 {
+  margin-top: 15px;
+}
+
+.row-space-top-3 {
+  margin-top: 20px;
+}
+
+.row-space-top-4 {
+  margin-top: 25px;
+}
+
+.row-space-0 {
+  margin-bottom: 0px;
+}
+.row-space-1 {
+  margin-bottom: 10px;
+}
+
+.row-space-2 {
+  margin-bottom: 15px;
+}
+
+.row-space-3 {
+  margin-bottom: 20px;
+}
+
+.row-space-4 {
+    margin-bottom: 25px;
+}
+
+// プロフィール画像
 .profile-0 {
-  width: 28px;
-  height: 28px;
+    width: 28px !important;
+    height: 28px !important;
 }
 
 .profile-1 {
-  width: 50px;
-  height: 100px;
+  width: 50px !important;
+  height: 50px !important;
 }
 
 .profile-2 {
-  width: 100px;
-  height: 100px;
+  width: 100px !important;
+  height: 100px !important;
 }
 
 .profile-full {
-  width: 30%;
+  width: 25% !important;
+  height: 25% !important;
 }
 
-// 992pxより大きいときは100%にする、それ以外は30%
 @media (min-width: 992px){
 .profile-full {
-        width: 100%;
+        width: 80% !important;
+        height: 80% !important;
     }
 }
-
-.row-space-1 {
-  margin-bottom: 10px;
-}
-
-.row-space-2 {
-  margin-bottom: 15px;
-}
-
-.row-space-3 {
-  margin-bottom: 20px;
-}
-
-.row-space-4 {
-  margin-bottom: 25px;
-}
-
-// 992pxより大きいときは100%にする、それ以外は30%
-@media (min-width: 992px){
-.profile-full {
-        width: 100%;
-    }
-}
-
-.row-space-1 {
-  margin-bottom: 10px;
-}
-
-.row-space-2 {
-  margin-bottom: 15px;
-}
-
-.row-space-3 {
-  margin-bottom: 20px;
-}
-
-.row-space-4 {
-  margin-bottom: 25px;
-}
-
-
-
 // ここまで上書き
+
 .btn-full {
   width: 100%;
 }
@@ -245,7 +311,123 @@
   display: block;
 }
 
+// listings/indexのcss
+a.sidebar-item {
+  font-size: 16px;
+  color: #222;
+}
 
+.sidebar-list li.active {
+  font-weight: bold;
+}
+
+.ul-unstyled{
+  list-style: none; padding-left: 0;
+}
+
+li.panel-body {
+    border-top: 1px solid #eeeeee;
+}
+
+li.panel-body:first-child {
+  border-top: none;
+}
+
+span.listing-title {
+  font-size: 18px;
+}
+
+.row-table{
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.col-middle{
+  vertical-align: middle;
+  display: table-cell;
+  float: none;
+}
+
+.panel-list-img {
+  height: 61px;
+}
+
+.panel-list-img img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px){
+  .row-table, .col-middle{
+    display: block;
+  }
+
+  .panel-list-img {
+    height: 170px;
+  }
+}
+
+// showページのcss
+.container-listing-show {
+  background-color: #fff;
+  border-bottom: 1px solid #dce0e0;
+}
+
+.panel-show {
+  border-radius: 0px;
+  border: none;
+}
+
+.panel-show .panel-heading{
+  background-color: rgba(60,63,64,0.9);
+  color: #fff;
+  border-radius: 0px;
+  border-bottom: 0px;
+}
+
+.panel-show .panel-body{
+  border: 1px solid #eee;
+}
+
+.btn-wide{
+  width: 85%;
+}
+
+//showページのデスクトップcss
+@media (min-width: 992px){
+  .panel-show {
+    position: inherit;
+    width: 296px;
+    z-index: 100;
+    margin-top: -62px;
+  }
+}
+
+// showページの近いリスティングのcss
+.panel-listing img {
+  width: 100%;
+  height: 180px;
+}
+
+//showページのデスクトップcss
+@media (min-width: 992px){
+  .panel-listing img {
+  height: 160px;
+  }
+}
+
+.price-card {
+    background: rgba(60,63,64,0.9);
+    color: #fff;
+    position: absolute;
+    bottom: 125px;
+    padding: 7px 10px;
+}
+
+a {
+  color: #222;
+}
 
 body {
     color: #222;
