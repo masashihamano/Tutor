@@ -14,6 +14,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sharings do
+    resources :reservations, only: [:new, :create]
+  end
+
+
+  get '/setdate', to: 'reservations#setdate'
+  get '/duplicate', to: 'reservations#duplicate'
+  get '/reservations', to: 'reservations#index'
+  get '/reserved', to: 'reservations#reserved'
+
+
   get 'manage-sharing/:id/basics', to: 'sharings#basics', as: 'manage_sharing_basics'
   get 'manage-sharing/:id/description', to: 'sharings#description', as: 'manage_sharing_description'
   get 'manage-sharing/:id/address', to: 'sharings#address', as: 'manage_sharing_address'

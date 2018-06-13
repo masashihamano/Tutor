@@ -81,22 +81,77 @@
         <div class="col-md-3">
           <div class="panel panel-default panel-show">
             <div class="panel-heading">
-              <span style="font-size:16px;"><%= @sharing.price %>円（一晩あたり）</span>
+              <span style="font-size:16px;"><%= @sharing.price %>円（一日あたり）</span>
             </div>
 
             <div class="panel-body panel-real">
-              <!-- ルーティングを入れ子にしているのでパスが@sharingの書き方となる -->
+              <!-- ルーティングを入れ子にしているのでパスが@listingの書き方となる -->
               <!-- ここでstripeの決済newアクションとページへ飛ぶ -->
+                <%= form_for [@sharing, @sharing.reservations.new] do |f| %>
 
-              <%= form_for @sharing, :html => { multipart: true } do |f| %>
+                <!-- 予約をするときに、一緒に送るデータ -->
+                <%= f.hidden_field :sharing_id, value: @sharing.id %>
+                <%= f.hidden_field :price, value: @sharing.price %>
+                <%= f.hidden_field :total_price, id:'reservation_total_price' %>
 
-              <div class="actions text-center">
-                <%= f.submit "この日程で予約する", class: "btn btn-danger btn-wide" %>
-              </div>
+                <div class="row row-space-2">
+                  <div class="col-md-6">
+                    <label>開始日</label>
+                      <%= f.text_field :start_date, :class => 'form-control', placeholder: '開始' %>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>終了日</label>
+                    <%= f.text_field :end_date, :class => 'form-control', placeholder: '終了', disabled:true %>
+                  </div>
+                </div>
+
+                <!-- シッター料金 -->
+                <div id="sharepet_price" class="row row-space-2 hidden">
+                  <div class="col-md-8 col-xs-8">
+
+                  </div>
+                  <div class="col-md-4 col-xs-4">
+
+                  </div>
+                </div>
+
+                <!-- 手数料 -->
+                <div id="applicaton-fee" class="row row-space-2 hidden">
+                  <div class="col-md-8 col-xs-8">
+
+                  </div>
+                  <div class="col-md-4 col-xs-4">
+
+                  </div>
+                </div>
+
+                <!-- 合計料金 -->
+                <div id="total-price" class="row row-space-2 hidden">
+                  <div class="col-md-8 col-xs-8">
+
+                  </div>
+                  <div class="col-md-4 col-xs-4">
+
+                  </div>
+                </div>
+
+                <!-- エラーメッセージ -->
+                <div id="duplicate-message" class="row hidden">
+                    <div class="col-md-12 text-center">
+                        <label class="error">その日程は予約できません</label>
+                    </div>
+                </div>
+
+                <div class="actions text-center">
+                  <%= f.submit "この日程で予約する", class: "btn btn-danger btn-wide" %>
+                </div>
               <% end %>
             </div>
           </div>
         </div>
+
+
       </div>
     </div>
   </div>
@@ -220,4 +275,171 @@ function initMap() {
 <!-- googleマップ -->
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKLzAYsoEoxsjpAi2LJVAxqAQyQLjr4Oo&callback=initMap">
+</script>
+
+<!-- ここからdatepicker -->
+<script>
+$( function() {
+  //日付について、それが選択不可能なものかを決める関数(既に予約されている日の重複を防ぐ)
+  // inArray()について:dmyがdisabledDates配列になければ-1を返す
+  function disable(date){
+    dmy = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+    return [$.inArray(dmy,disabledDates) == -1]; //trueを返す
+  }
+
+  // 不可能な日付の配列
+  disabledDates = [];
+
+  //事前にdatepickerに選択不可能な日付をセットするajax
+  $.ajax({
+    url: '/setdate',
+    // this data is data for sending to url
+    data: {'sharing_id': <%= @sharing.id %>},
+    dataType: 'json',
+    // callback argument: data is the response data
+    // 下のurlを参考
+    // http://stackoverflow.com/questions/4345045/javascript-loop-between-date-ranges
+
+    // disabledDates[]にすでに予約されている日付を追加していく
+    success: function(data){
+      $.each(data,function(objID,objValue){
+        for(var d = new Date(objValue.start_date); d <= new Date(objValue.end_date); d.setDate(d.getDate() + 1 )){
+          disabledDates.push($.datepicker.formatDate('d-m-yy',d));
+        }
+      });
+
+      // start_date欄(開始ボタン)がクリックされた時の処理
+      $('#reservation_start_date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        // 本日から
+        minDate: 0,
+        // 3ヶ月後までの予約
+        maxDate: '3m',
+        // 一つ一つの選択された日付を無効にする
+        beforeShowDay: disable,
+        // 日付が選択された時の処理
+        onSelect: function(selected){
+          // 開始日以前を終了日では無効にする
+          $('#reservation_end_date').datepicker("option","minDate",selected);
+          // 開始日を入力しないと、終了日を押せない
+          $('#reservation_end_date').attr('disabled',false);
+
+          // thisとは#reservation_start_dateの事
+          var start_date = $(this).datepicker('getDate');
+          var end_date = $('#reservation_end_date').datepicker('getDate');
+          var days = (end_date - start_date)/1000/60/60/24 +1 ;
+
+          var inputs = {
+            'start_date': start_date,
+            'end_date': end_date,
+            'sharing_id':<%= @sharing.id %>
+          }
+
+  // 選択日に重なりがないかチェックするajax
+  // inputしたdataをduplicateアクションに送る
+      $.ajax({
+        url: "/duplicate",
+        data: inputs,
+        success: function(data){
+        if (data.duplicate) {
+          // dataのduplicateがtrue(重なりがある)なら
+          // 重なりがある場合は、エラーメッセージを表示
+          // また、合計料金,手数料を隠す
+          // 予約ボタンの押せないようにする
+          $('#duplicate-message').removeClass('hidden');
+          $('#sharepet_price').addClass('hidden');
+          $('#applicaton-fee').addClass('hidden');
+          $('#total-price').addClass('hidden');
+          $('.btn-wide').attr('disabled', true);
+        }else{
+          // dataのduplicateがfalse(傘なら理が無い)なら予約できる
+          // 重なりがない場合は、エラーメッセージをかくす
+          // 合計料金をtotalに入れる
+          // total-priceを表示させる
+          $('#duplicate-message').addClass('hidden');
+
+          var sharepet_price = days * <%= @sharing.price %> ;
+          var applicaton_fee =  Math.round(sharepet_price * 0.1) ;
+          var price_total = sharepet_price + applicaton_fee;
+          $('#sharepet_price').removeClass('hidden');
+          $('#total-price').removeClass('hidden');
+          $('#applicaton-fee').removeClass('hidden');
+          $('#sharepet_price .col-md-8').text("ペットレンタル料:"+"<%= @sharing.price %>"+"円"+" x "+days+"日");
+          $('#applicaton-fee .col-md-8').text("手数料:ペットレンタル料×10.0%");
+          $('#total-price .col-md-8').text("合計料金");
+
+          $('#sharepet_price .col-md-4').text(sharepet_price+"円");
+          $('#applicaton-fee .col-md-4').text(applicaton_fee+"円");
+          $('#total-price .col-md-4').text(price_total+"円");
+          $('#reservation_total_price').val(price_total);
+          $('.btn-wide').attr('disabled', false);
+          }
+        }
+      });
+    }
+  });
+
+      // end_date欄(終了ボタン)がクリックされた時の処理
+      //基本的に上のstart_dateと同じだがdateの順番が若干違う
+      $('#reservation_end_date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: 0,
+        maxDate: '3m',
+        beforeShowDay: disable,
+        onSelect: function(selected){
+          $('#reservation_start_date').datepicker("option","maxDate",selected);
+
+          var start_date = $('#reservation_start_date').datepicker('getDate');
+          var end_date = $(this).datepicker('getDate');
+          var days = (end_date - start_date)/1000/60/60/24 +1 ;
+
+          var inputs = {
+            'start_date': start_date,
+            'end_date': end_date,
+            'sharing_id':<%= @sharing.id %>
+          }
+
+  // 選択日に重なりがないかチェックするajax
+  $.ajax({
+      url: "/duplicate",
+      data: inputs,
+      success: function(data){
+        if (data.duplicate) {
+         // 重なりがある場合は、エラーメッセ-ジを表示
+          // 合計料金,手数料を隠す
+          // 予約ボタンの押せないようにする
+          $('#duplicate-message').removeClass('hidden');
+          $('#sharepet_price').addClass('hidden');
+          $('#applicaton-fee').addClass('hidden');
+          $('#total-price').addClass('hidden');
+          $('.btn-wide').attr('disabled', true);
+        }else{
+          // 重なりがなくokな場合は、エラーメッセージをかくす
+          // 合計料金をtotalに入れる
+          // total-priceを表示させる
+          $('#duplicate-message').addClass('hidden');
+
+          var sharepet_price = days * <%= @sharing.price %> ;
+          var applicaton_fee =  Math.round(sharepet_price * 0.1) ;
+          var price_total = sharepet_price + applicaton_fee;
+          $('#sharepet_price').removeClass('hidden');
+          $('#total-price').removeClass('hidden');
+          $('#applicaton-fee').removeClass('hidden');
+          $('#sharepet_price .col-md-8').text("シッター料:"+"<%= @sharing.price %>"+"円"+" x "+days+"日");
+          $('#applicaton-fee .col-md-8').text("手数料:シッター料×10.0%");
+          $('#total-price .col-md-8').text("合計料金");
+
+          $('#sharepet_price .col-md-4').text(sharepet_price+"円");
+          $('#applicaton-fee .col-md-4').text(applicaton_fee+"円");
+          $('#total-price .col-md-4').text(price_total+"円");
+          $('#reservation_total_price').val(price_total);
+          $('.btn-wide').attr('disabled', false);
+          }
+          }
+        });
+        }
+      });
+    }
+  });
+});
 </script>

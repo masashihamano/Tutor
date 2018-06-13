@@ -2,6 +2,7 @@ class Sharing < ApplicationRecord
 
   belongs_to :user
   has_many :photos
+  has_many :reservations
 
   # 必須項目
   validates :home_type, presence: true

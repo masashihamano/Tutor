@@ -38,6 +38,8 @@ gem "figaro", "~> 1.1.0"
 gem 'aws-sdk', '~> 3.0'
 # googleマップを導入
 gem 'geocoder'
+# カレンダーからの日付選択機能
+gem 'jquery-ui-rails'
 
 
 
