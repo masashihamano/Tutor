@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_15_062228) do
+ActiveRecord::Schema.define(version: 2018_06_15_074540) do
 
   create_table "photos", force: :cascade do |t|
     t.integer "sharing_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_06_15_062228) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "not_checked"
     t.index ["user_id"], name: "index_sharings_on_user_id"
   end
 

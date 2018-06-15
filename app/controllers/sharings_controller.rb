@@ -90,6 +90,12 @@ class SharingsController < ApplicationController
   #   request.referer
   # end
 
+  def not_checked
+    @sharing = Sharing.find(params[:sharing_id])
+    @sharing.update(not_checked: params[:not_checked])
+    render :nothing => true
+  end
+
 
   private
 

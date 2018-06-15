@@ -12,7 +12,7 @@ module Tutor
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
 
-
+    config.time_zone = 'Asia/Tokyo'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -21,5 +21,3 @@ module Tutor
 
   end
 end
-
-config.time_zone = 'Asia/Tokyo'

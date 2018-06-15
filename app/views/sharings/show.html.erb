@@ -183,8 +183,8 @@
   <div class="row row-space-4">
     <div class="col-md-9">
     <!-- レビューの件数を表示 -->
-    <h3 class="row-space-3">レビュー<%= @reviews.count %>件</h3>
-      <div id="average_star_rate"></div>
+    <h3 class="row-space-3">レビュー<%= @reviews.count %>件 </h3>
+      <h4 id="average_star_rate">平均評価: </h4>
       <!-- 予約をしていて(@currentUserBooking)レビューをしていない(!@currentUserReview)ユーザーにフォームを表示する -->
         <%= render 'reviews/form' if @currentUserBooking && !@currentUserReview %>
       <!-- レビューをしていない(!@currentUserReview)が正しくないのでlistへ飛ぶ -->
