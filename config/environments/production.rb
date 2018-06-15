@@ -89,13 +89,23 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  # Do not dump schema after migrations.
-  config.active_record.dump_schema_after_migration = false
+#   # Do not dump schema after migrations.
+#   config.active_record.dump_schema_after_migration = false
+#
+#   #本番環境の時にはlocalhostを変更する
+#   config.action_mailer.default_url_options = { host: 'http://Tutor.herokuapp.com' }
+#   config.action_mailer.raise_delivery_errors = false
+#   config.action_mailer.delivery_method = :smtp
+#   config.action_mailer.smtp_settings = {
+#     :user_name => "SendGridのアカウント名",
+#     :password => "SendGridのパスワード",
+#     :domain => "heroku.com",
+#     :address => "smtp.sendgrid.net",
+#     :port => 587,
+#     :authentication => :plain,
+#     :enable_starttls_auto => true
+# }
 
-  #本番環境の時にはlocalhostを変更する
-  # config.action_mailer.default_url_options = { host: 'http://Tutor.herokuapp.com' }
-
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.paperclip_defaults = {
     storage: :s3,
@@ -109,6 +119,5 @@ Rails.application.configure do
   }
 
 
-config.secret_key = 'bf684a35dc0c69265ea9accdb4a4ce2466f3bb425ded8536dcc628ba8f73c2a00728d21e962e3cba4753e79d872f2a346eeebb67175613a5df72d3d176ec804c'
 
 end

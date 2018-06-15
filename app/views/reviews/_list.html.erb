@@ -1,0 +1,38 @@
+<!-- レビューがあるかないかで場合分け -->
+<% if @reviews.count == 0 %>
+  <div class="text-center">
+    <h4>There is no review yet</h4>
+  </div>
+<% else %>
+<!-- 全ての@reviewsを取り出して新しい順に表示する -->
+  <% @reviews.order("id desc").each do |review| %>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 text-center">
+        <%# if review.user.image.present? %>
+        <%#= image_tag review.user.image, class:"img-circle profile-1" %>
+        <%# end %>
+      <div class="row">
+        <%= review.user.name %>
+      </div>
+      </div>
+      <div class="col-md-10">
+        <div class="row-space-1">
+          <%= review.description %>
+        </div>
+
+        <div>
+          <!-- ("%Y年%m月%d日00:00:00")の日付で表示 -->
+          <%= review.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %>
+        </div>
+
+        <div>
+          <span class="pull-right">
+            <%= link_to "DELETE",[@sharing,review],method: :delete, data: {confirm: "削除していいですか?"}, class:"btn btn-danger" if current_user && current_user = review.user %>
+            <!-- only current_user && reviewed user remove reviews -->
+          </span>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<% end %>

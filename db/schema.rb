@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_104522) do
+ActiveRecord::Schema.define(version: 2018_06_15_062228) do
 
   create_table "photos", force: :cascade do |t|
     t.integer "sharing_id"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 2018_06_14_104522) do
     t.boolean "self_booking"
     t.index ["sharing_id"], name: "index_reservations_on_sharing_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "description"
+    t.integer "rate"
+    t.integer "sharing_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sharing_id"], name: "index_reviews_on_sharing_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "sharings", force: :cascade do |t|

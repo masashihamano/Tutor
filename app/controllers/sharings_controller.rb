@@ -3,8 +3,11 @@ class SharingsController < ApplicationController
   # ログイン済ユーザーのみにアクセスを許可する→ログインしていないuserが「シッターになるボタン(sharing)」を押したときにログインページへ飛ばす
   before_action :authenticate_user!
 
+  # onlyで制限しないとindexやshowなど他のアクションにも適用されてしまう
   before_action :set_sharing, only: [:show, :update, :basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
 
+  # 他人の管理ページへのアクセス制限
+  before_action :access_deny, only: [:basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
 
 
   def index
@@ -13,6 +16,15 @@ class SharingsController < ApplicationController
 
   def show
     @photos = @sharing.photos
+
+    # 予約をした人でないとreviewはかけないという処理
+    # sharing_id = ?に@sharing.id が入り AND user_id = ?にcurrent_user.idが入る
+    # 今のユーザー(current_user)かつ、このsharing(@sharing_id)を予約しているかどうか
+    # if current_user はcurrnt_userがいる場合に実行する
+    @currentUserBooking = Reservation.where("sharing_id = ? AND user_id = ?",@sharing.id,current_user.id).present? if current_user
+
+    @reviews = @sharing.reviews
+    @currentUserReview = @reviews.find_by(user_id: current_user.id) if current_user
   end
 
   def new
@@ -46,6 +58,8 @@ class SharingsController < ApplicationController
   end
 
   def basics
+    # Sharingモデルのidナンバーを探して@sharingに代入
+    # @sharing = Sharing.find(params[:id])
   end
 
   def description
@@ -86,6 +100,12 @@ class SharingsController < ApplicationController
 
   def set_sharing
     @sharing = Sharing.find(params[:id])
+  end
+
+  def access_deny
+    if !(current_user == @sharing.user)
+      redirect_to root_path, notice: "他人の編集ページにはアクセスできません"
+    end
   end
 
 end

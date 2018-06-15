@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  rate: 1
+  sharing: one
+  user: one
+
+two:
+  description: MyText
+  rate: 1
+  sharing: two
+  user: two
