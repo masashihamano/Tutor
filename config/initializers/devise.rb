@@ -288,7 +288,9 @@ Devise.setup do |config|
     config.omniauth :facebook, ENV["facebook_app_id"], ENV["facebook_app_secret"], scope: 'email', info_fields: 'email,name', secure_image_url: true
 
 
-  config.secret_key = ENV["DEVISE_SECRET_KEY"]
+  config.secret_key = 'afac709104a55c5b1d2d8f8335a25898d69d75354ff30284d9c3c3c624cd054599e61b42d460262b959e2cabd19c24e3fdd33b8091664c5edd92cc2074877bf4'
+
+  # config.secret_key = ENV["DEVISE_SECRET_KEY"]
 
 
 end
