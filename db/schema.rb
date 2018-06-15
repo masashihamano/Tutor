@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_112703) do
+ActiveRecord::Schema.define(version: 2018_06_14_104522) do
 
   create_table "photos", force: :cascade do |t|
     t.integer "sharing_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_112703) do
     t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "self_booking"
     t.index ["sharing_id"], name: "index_reservations_on_sharing_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -73,6 +74,15 @@ ActiveRecord::Schema.define(version: 2018_06_13_112703) do
     t.string "name"
     t.string "phone_number"
     t.string "description"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.string "publishable_key"
+    t.string "secret_key"
+    t.string "stripe_user_id"
+    t.string "currency"
+    t.string "stripe_account_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

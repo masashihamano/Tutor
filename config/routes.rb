@@ -33,4 +33,13 @@ Rails.application.routes.draw do
   get 'manage-sharing/:id/calendar', to: 'sharings#calendar', as: 'manage_sharing_calendar'
   get 'manage-sharing/:id/bankaccount', to: 'sharings#bankaccount', as: 'manage_sharing_bankaccount'
   get 'manage-sharing/:id/publish', to: 'sharings#publish', as: 'manage_sharing_publish'
+
+
+  # stripe connect oauth patfh
+  get '/connect/oauth', to: 'stripe#oauth', as: 'stripe_oauth'
+  get '/connect/confirm', to: 'stripe#confirm', as: 'stripe_confirm'
+  get '/connect/deauthorize', to: 'stripe#deauthorize', as: 'stripe_deauthorize'
+
+
+
 end

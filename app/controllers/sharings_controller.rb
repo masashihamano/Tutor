@@ -1,6 +1,6 @@
 class SharingsController < ApplicationController
 
-  # ログイン済ユーザーのみにアクセスを許可する→ログインしていないuserが「シッターになるボタン(listing)」を押したときにログインページへ飛ばす
+  # ログイン済ユーザーのみにアクセスを許可する→ログインしていないuserが「シッターになるボタン(sharing)」を押したときにログインページへ飛ばす
   before_action :authenticate_user!
 
   before_action :set_sharing, only: [:show, :update, :basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
@@ -38,7 +38,7 @@ class SharingsController < ApplicationController
   def update
     if @sharing.update(sharing_params)
 
-      # redirect_to listings_path(@listing), notice: "更新しました"
+      # redirect_to sharings_path(@sharing), notice: "更新しました"
       # redirect_to :back, notice: "更新しました"
       redirect_back fallback_location: manage_sharing_price_path, notice:"更新しました"
       # Rails 5.1からbackは使えない
@@ -65,8 +65,8 @@ class SharingsController < ApplicationController
   end
 
   def bankaccount
-    @user = @listing.user
-    session[:listing_id] = @listing.id
+    @user = @sharing.user
+    session[:sharing_id] = @sharing.id
   end
 
   def publish

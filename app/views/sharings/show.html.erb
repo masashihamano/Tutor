@@ -47,9 +47,17 @@
       <div class="row">
         <div class="col-md-3 text-center row-space-2">
           <%= link_to user_path(@sharing.user) do %>
-            <% if @sharing.user.image.present? %>
-              <%= image_tag @sharing.user.image,class:"img-circle profile-2" %>
+
+            <%# if @sharing.user.image.present? %>
+              <%#= image_tag @sharing.user.image, class:"img-circle profile-2" %>
+            <%# end %>
+
+            <% if current_user.image %>
+              <%= image_tag current_user.image class:"img-circle profile-2" %>
+            <% else %>
+              <%= image_tag 'avatar-default.png', class:"img-circle profile-2" %>
             <% end %>
+
           <% end %>
           <h5><%= @sharing.user.name %></h5>
         </div>
@@ -85,9 +93,9 @@
             </div>
 
             <div class="panel-body panel-real">
-              <!-- ルーティングを入れ子にしているのでパスが@listingの書き方となる -->
+              <!-- ルーティングを入れ子にしているのでパスが@sharingの書き方となる -->
               <!-- ここでstripeの決済newアクションとページへ飛ぶ -->
-                <%= form_for [@sharing, @sharing.reservations.new] do |f| %>
+                <%= form_for [@sharing, @sharing.reservations.new], url: new_sharing_reservation_path(@sharing), html: {method: "get"} do |f| %>
 
                 <!-- 予約をするときに、一緒に送るデータ -->
                 <%= f.hidden_field :sharing_id, value: @sharing.id %>
@@ -222,9 +230,9 @@
                   <%= link_to sharing.sharing_title, sharing %><br>
                 </div>
                 <div class="col-md-3 col-xs-3">
-                <% if sharing.user.image.present? %>
-                  <%= image_tag sharing.user.image,class:"img-circle profile-1" %>
-                <% end %>
+                <%# if sharing.user.image.present? %>
+                  <%#= image_tag sharing.user.image, class:"img-circle profile-1" %>
+                <%# end %>
                 </div>
                 <div class="price-card">
                   <%= sharing.price %> 円

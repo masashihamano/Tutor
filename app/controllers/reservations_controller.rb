@@ -1,6 +1,22 @@
 class ReservationsController < ApplicationController
 
+  def new
+    @sharing = Sharing.find(params[:sharing_id])
+    @user = current_user
 
+    @start_date =  params[:reservation][:start_date]
+    @end_date =  params[:reservation][:end_date]
+    @price_pernight =  params[:reservation][:price_pernight]
+    @total_price =  params[:reservation][:total_price]
+  end
+
+  def index
+    @reservations = current_user.reservations.where(self_booking: nil)
+  end
+
+  def reserved
+    @sharings = current_user.sharings
+  end
 
   def create
     @sharing = Sharing.find(params[:sharing_id])
@@ -32,7 +48,7 @@ class ReservationsController < ApplicationController
       #新しい日付の予約をクリエイトする
       if selectedDates
         selectedDates.each do |date|
-          current_user.reservations.create(:sharing_id => @sharing.id,:start_date => date,:end_date => date )
+          current_user.reservations.create(:sharing_id => @sharing.id,:start_date => date,:end_date => date, :self_booking => true )
         end
       end
 
@@ -40,41 +56,41 @@ class ReservationsController < ApplicationController
       redirect_to manage_sharing_calendar_path(@sharing), notice: "更新しました。"
 
     else
+    # 他人のレンタルの予約作成とStripeのpayアクションの実行
+      # Find the user to pay.
+      user = @sharing.user
 
-  #     # Find the user to pay.
-  #     user = @sharing.user
-  #
-  #     # Charge
-  #     amount = params[:reservation][:total_price]
-  #
-  #     # fee 10％の手数料
-  #     fee = (amount.to_i * 0.1).to_i
-  #
-  #     # Calculate the fee amount that goes to the application.
-  #     # docs https://stripe.com/docs/connect/payments-fees
-  #     begin
-  #       charge_attrs = {
-  #         amount: amount,
-  #         currency: user.currency,
-  #         source: params[:token],
-  #         description: "Test Charge via Stripe Connect",
-  #         application_fee: fee
-  #       }
-  #
-  #       # Use the platform's access token, and specify the
-  #       # connected account's user id as the destination so that
-  #       # the charge is transferred to their account.
-  # # ここでエラーになる
-  #       charge_attrs[:destination] = user.stripe_user_id
-  #       charge = Stripe::Charge.create( charge_attrs )
-  #
-  #       #have to edit view template to show html in flash
-  #       flash[:notice] = "Charged successfully!"
-  #
-  #     rescue Stripe::CardError => e
-  #       error = e.json_body[:error][:message]
-  #       flash[:error] = "Charge failed! #{error}"
-  #     end
+      # Charge
+      amount = params[:reservation][:total_price]
+
+      # fee 10％の手数料
+      fee = (amount.to_i * 0.1).to_i
+
+      # Calculate the fee amount that goes to the application.
+      # docs https://stripe.com/docs/connect/payments-fees
+      begin
+        charge_attrs = {
+          amount: amount,
+          currency: user.currency,
+          source: params[:token],
+          description: "Test Charge via Stripe Connect",
+          application_fee: fee
+        }
+
+        # Use the platform's access token, and specify the
+        # connected account's user id as the destination so that
+        # the charge is transferred to their account.
+  # ここでエラーになる
+        charge_attrs[:destination] = user.stripe_user_id
+        charge = Stripe::Charge.create( charge_attrs )
+
+        #have to edit view template to show html in flash
+        flash[:notice] = "Charged successfully!"
+
+      rescue Stripe::CardError => e
+        error = e.json_body[:error][:message]
+        flash[:error] = "Charge failed! #{error}"
+      end
 
       # 予約をパラメーター付与して作成
         @reservation = current_user.reservations.create(reservation_params)
@@ -82,7 +98,6 @@ class ReservationsController < ApplicationController
 
     end
   end
-
 
   def setdate
     # ajaxで送られてきたsharing_idを(sharingに代入)元にそのシェペットの予約をjsonで返す
