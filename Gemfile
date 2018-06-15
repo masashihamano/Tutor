@@ -40,10 +40,12 @@ gem 'aws-sdk', '~> 3.0'
 gem 'geocoder'
 # カレンダーからの日付選択機能
 gem 'jquery-ui-rails'
-# stripe決済を導入
+# stripe決済を導入。rest-clientはstripeとセット
 gem 'stripe'
-# stripeとセット
 gem 'rest-client'
+# メッセンジャー機能
+gem 'private_pub'
+gem 'thin'
 
 
 
