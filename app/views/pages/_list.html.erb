@@ -1,0 +1,33 @@
+<% if @arrsharings  %>
+  <div class="row filter-section">
+    <% @arrsharings.each do |sharing| %>
+      <div class="col-md-6">
+        <%= link_to sharing do %>
+          <div class="panel panel-default">
+            <div class="panel-heading panel-listing text-center" style="padding: 0;">
+              <%= link_to(sharing) do %>
+                <%= image_tag sharing.photos[0].image.url(:medium)  if sharing.photos.length > 0 %>
+              <% end %>
+
+              <div class="price-card">
+                <%= sharing.price %> 円
+              </div>
+            </div>
+
+
+            <div class="panel-body">
+              <div class="col-md-10 col-xs-10">
+                <%= sharing.sharing_title %>
+              </div>
+              <div class="col-md-2 col-xs-2">
+                <%# if sharing.user.image.present? %>
+                <%#= image_tag sharing.user.image,class:"img-circle profile-1" %>
+                <%# end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

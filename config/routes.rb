@@ -50,4 +50,8 @@ Rails.application.routes.draw do
 
   get 'not_checked', to: 'sharing#not_checked'
 
+  get '/search'  => 'pages#search'
+
+  get '/ajaxsearch' => 'pages#ajaxsearch'
+
 end

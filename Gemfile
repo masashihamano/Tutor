@@ -46,7 +46,8 @@ gem 'rest-client'
 # メッセンジャー機能
 gem 'private_pub'
 gem 'thin'
-
+# autocomplete検索以外の検索機能
+gem 'ransack'
 
 
 # Reduces boot times through caching; required in config/boot.rb

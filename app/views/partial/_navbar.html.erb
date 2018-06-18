@@ -13,12 +13,18 @@
       </a>
     </div>
 
+    <!-- Location Search Form -->
+    <!-- <div class="navbar-form navbar-left form-group row-space-2">
+      <%#= text_field_tag :search, params[:search], placeholder: "どちらまで?", class: "form-control",id:"pac-input" %>
+    </div> -->
+
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if (!user_signed_in?) %>
           <!-- ログインしていない時 -->
-          <li><%= link_to("シェアペットとは", { anchor: "#" }) %></li>
+          <li><%= link_to("シェアペットとは", { anchor: "services" }) %></li>
           <li><%= link_to "ペットをシェアする", new_sharing_path  %></li>
           <li><%= link_to "会員登録", new_user_registration_path %></li>
           <li><%= link_to "ログイン", new_user_session_path %><li>

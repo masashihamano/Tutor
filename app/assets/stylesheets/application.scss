@@ -23,6 +23,10 @@
   font-weight: bold;
 }
 
+.pull-right {
+  padding-right: 20px;
+}
+
 // .form-group {
 //   margin-top: 20px;
 // }
@@ -596,6 +600,10 @@ footer ul.quicklinks {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     text-transform: none;
+}
+
+#search-result .panel-body{
+  height: 95px;
 }
 
 a {
