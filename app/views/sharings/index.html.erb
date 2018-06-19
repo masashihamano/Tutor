@@ -24,17 +24,17 @@
                 </div>
 
   <!-- ほんとは下のコメントが正しいがajaxが動かないのか、そもそもnot_checkedのアクションが悪いのかでnot_checkedが作動しない -->
-                <div class="col-md-3 col-sm-3 col-middle row-space-1">
-                  <%= link_to "残り5ステップ", manage_sharing_basics_path(sharing), class: "btn btn-primary pull-right" %>
-                </div>
+                <!-- <div class="col-md-3 col-sm-3 col-middle row-space-1">
+                  <%#= link_to "残り5ステップ", manage_sharing_basics_path(sharing), class: "btn btn-primary pull-right" %>
+                </div> -->
 
 
                 <div class="col-md-3 col-sm-3 col-middle row-space-1">
-                  <%# if sharing.not_checked > 1%>
-                      <%#= link_to "残り#{sharing.not_checked}ステップ", manage_sharing_basics_path(sharing), class: "btn btn-primary pull-right" %>
-                  <%# else %>
-                      <%#= link_to "編集する", manage_sharing_basics_path(sharing), class: "btn btn-success pull-right" %>
-                  <%# end %>
+                  <% if sharing.not_checked > 1%>
+                      <%= link_to "残り#{sharing.not_checked}ステップ", manage_sharing_basics_path(sharing), class: "btn btn-primary pull-right" %>
+                  <% else %>
+                      <%= link_to "編集する", manage_sharing_basics_path(sharing), class: "btn btn-success pull-right" %>
+                  <% end %>
                 </div>
 
               </div>
