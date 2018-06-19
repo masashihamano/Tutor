@@ -48,14 +48,14 @@
     <div class="row filter-section row-space-top-4 row-space-4">
 
       <div class="col-md-3 text-center">
-        <h4>レンタルプラン</h4>
+        <h4>プラン</h4>
       </div>
 
       <div class="col-md-3 col-xs-4">
         <%= check_box_tag "q[home_type_eq_any][]", "お泊り",session[:Mansion] %> お泊り
       </div>
       <div class="col-md-3 col-xs-4">
-        <%= check_box_tag "q[home_type_eq_any][]", "ショートステイ",session[:House] %> ショートステイ
+        <%= check_box_tag "q[home_type_eq_any][]", "ショートステイ",session[:House] %> ショート
       </div>
       <div class="col-md-3 col-xs-4">
         <%= check_box_tag "q[home_type_eq_any][]", "お散歩",session[:Apartment]%> お散歩
@@ -74,7 +74,7 @@
       </div>
 
       <div class="col-md-2 col-xs-6 text-center">
-        <h4>ペットの年齢</h4>
+        <h4>年齢</h4>
       </div>
       <div class="col-md-3 col-xs-6">
         <div class="form-group">
