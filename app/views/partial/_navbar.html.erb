@@ -50,7 +50,7 @@
 
 
             <% if current_user.image %>
-              <%= image_tag current_user.image, class:"img-circle profile-0" %>
+              <%= image_tag current_user.image.url, class:"img-circle profile-0" %>
             <% else %>
               <%= image_tag 'avatar-default.png', class:"img-circle profile-0" %>
             <% end %>
