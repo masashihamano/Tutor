@@ -767,6 +767,7 @@ GEM
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
+    open_uri_redirections (0.2.1)
     orm_adapter (0.5.0)
     paperclip (6.0.0)
       activemodel (>= 4.2.0)
@@ -934,6 +935,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   omniauth-facebook
+  open_uri_redirections
   paperclip (~> 6.0.0)
   pg (~> 0.20.0)
   private_pub

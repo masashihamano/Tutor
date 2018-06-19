@@ -16,8 +16,8 @@
 						<div class="row">
 							<div class="col-md-12 select">
 								<div class="form-group">
-									<label>お家の種類</label>
-									<%= f.select :home_type, [["一軒家","一軒家"], ["マンション","マンション"], ["アパート","アパート"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+									<label>レンタルプラン</label>
+									<%= f.select :home_type, [["お泊り","お泊り"], ["ショートステイ","ショートステイ"], ["お散歩","お散歩"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
 								</div>
 							</div>
 						</div>
@@ -27,7 +27,7 @@
 							<div class="col-md-12 select">
 								<div class="form-group">
 									<label>ペットの種類</label>
-									<%= f.select :pet_type, [["犬","犬"], ["猫","猫"], ["ハムスター","ハムスター"], ["ウサギ","ウサギ"], ["フクロウ","フクロウ"], ["ペンギン","ペンギン"], ["ヘビ","ヘビ"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+									<%= f.select :pet_type, [["トイプードル","トイプードル"], ["チワワ","チワワ"], ["ポメラニアン","ポメラニアン"], ["柴犬","柴犬"], ["ミニチュアダックス","ミニチュアダックス"], ["パグ","パグ"], ["コーギー","コーギー"], ["フレンチブルドッグ","フレンチブルドッグ"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
 								</div>
 							</div>
 						</div>

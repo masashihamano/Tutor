@@ -48,28 +48,28 @@
     <div class="row filter-section row-space-top-4 row-space-4">
 
       <div class="col-md-3 text-center">
-        <h4>家のタイプ</h4>
+        <h4>レンタルプラン</h4>
       </div>
 
       <div class="col-md-3 col-xs-4">
-        <%= check_box_tag "q[home_type_eq_any][]", "マンション",session[:Mansion] %> マンション
+        <%= check_box_tag "q[home_type_eq_any][]", "お泊り",session[:Mansion] %> お泊り
       </div>
       <div class="col-md-3 col-xs-4">
-        <%= check_box_tag "q[home_type_eq_any][]", "一軒家",session[:House] %> 一軒家
+        <%= check_box_tag "q[home_type_eq_any][]", "ショートステイ",session[:House] %> ショートステイ
       </div>
       <div class="col-md-3 col-xs-4">
-        <%= check_box_tag "q[home_type_eq_any][]", "アパート",session[:Apartment]%> アパート
+        <%= check_box_tag "q[home_type_eq_any][]", "お散歩",session[:Apartment]%> お散歩
       </div>
     </div>
 
     <!-- ペットタイプ -->
     <div class="row filter-section">
       <div class="col-md-3 col-xs-6 text-center">
-        <h4>ペットの種類</h4>
+        <h4>犬種</h4>
       </div>
       <div class="col-md-3 col-xs-6">
         <div class="form-group">
-          <%= f.select :pet_type_eq,[["犬","犬"], ["猫","猫"], ["ハムスター","ハムスター"], ["ウサギ","ウサギ"], ["フクロウ","フクロウ"], ["ペンギン","ペンギン"], ["ヘビ","ヘビ"]], { :include_blank => "Select",:selected => session[:pet_type_eq]},{class: "form-control"} %>
+          <%= f.select :pet_type_eq,[["トイプードル","トイプードル"], ["チワワ","チワワ"], ["ポメラニアン","ポメラニアン"], ["柴犬","柴犬"], ["ミニチュアダックス","ミニチュアダックス"], ["パグ","パグ"], ["コーギー","コーギー"], ["フレンチブルドッグ","フレンチブルドッグ"]], { :include_blank => "Select",:selected => session[:pet_type_eq]},{class: "form-control"} %>
         </div>
       </div>
 

@@ -1,4 +1,6 @@
 <%= render 'partial/navbar' %>
+
+<div class="main">
 <div class="container">
   <div class="col-md-3">
       <!-- vertical-navbar -->
@@ -8,7 +10,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="text-center">
-          <span style="font-size:24px;">ペットの紹介</span>
+          <span style="font-size:24px;">ワンちゃんの紹介</span>
         </div>
       </div>
 
@@ -19,8 +21,8 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label>ペットの名前</label>
-              <%= f.text_field :sharing_title, placeholder: "ペットの名前を記入しましょう", class: "form-control", required:"true" %>
+              <label>ワンちゃんの名前</label>
+              <%= f.text_field :sharing_title, placeholder: "ワンちゃんの名前を記入しましょう", class: "form-control", required:"true" %>
                <!-- required: "true"加えることで公開後、空欄で更新できないようになる -->
             </div>
           </div>
@@ -29,7 +31,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label>ペットの紹介</label>
+              <label>ワンちゃんの紹介</label>
               <%= f.text_area :sharing_content, rows: 8, placeholder: "紹介文を記入しましょう", class: "form-control", required:"true" %>
             </div>
           </div>
@@ -44,4 +46,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

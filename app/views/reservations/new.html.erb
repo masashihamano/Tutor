@@ -1,5 +1,6 @@
 <%= render 'partial/navbar' %>
 
+<div class="main">
 <div class="container">
     <!-- sharing content -->
   <div class="col-md-8 col-md-offset-2">
@@ -9,8 +10,8 @@
       <%#= image_tag @sharing.user.image,class:"img-circle profile-1 row-space-top-3" %>
       <% end %>
       <div class="caption">
-        <h4 class="text-center row-space-4">オーナー名: <%= @sharing.user.name %></h4>
-        <h4 class="text-center row-space-4">ペットの名前:<%= @sharing.sharing_title %></h4>
+        <h4 class="text-center row-space-4">オーナーのお名前: <%= @sharing.user.name %></h4>
+        <h4 class="text-center row-space-4">ワンちゃんのお名前:<%= @sharing.sharing_title %></h4>
 
         <h4 class="text-center row-space-4">合計金額:<%= @total_price %>円</h4>
         <div class="row text-center">
@@ -55,6 +56,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 

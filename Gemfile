@@ -49,6 +49,8 @@ gem 'thin'
 # autocomplete検索以外の検索機能
 gem 'ransack'
 
+gem 'open_uri_redirections'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

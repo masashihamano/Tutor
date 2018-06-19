@@ -1,5 +1,6 @@
 <%= render 'partial/navbar' %>
 <!-- this page has instance @other, @messages from message contr ,@conversation from convesation contrl-->
+<div class="main">
 <div class="container">
   <div class="row">
     <div class="col-md-3 text-center">
@@ -38,4 +39,5 @@
     </div>
   </div>
   <%= subscribe_to conversation_messages_path(@conversation) %>
+</div>
 </div>
