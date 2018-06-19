@@ -73,17 +73,18 @@ class ReservationsController < ApplicationController
           amount: amount,
           currency: user.currency,
           source: params[:token],
-          description: "Test Charge via Stripe Connect",
-          application_fee: fee
+          description: "Test Charge via Stripe Connect"#,
+          # ↓必要ない？
+          # application_fee: fee
         }
 
         # Use the platform's access token, and specify the
         # connected account's user id as the destination so that
         # the charge is transferred to their account.
   # ここでエラーになる
-        charge_attrs[:destination] = user.stripe_user_id
+          # destinationは必要ない？
+        # charge_attrs[:destination] = user.stripe_user_id
         charge = Stripe::Charge.create( charge_attrs )
-
         #have to edit view template to show html in flash
         flash[:notice] = "Charged successfully!"
 

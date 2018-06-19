@@ -102,10 +102,11 @@ $(function(){
   }
 
 
+// ↓このajaxが効いてない
   // ajaxでそのシェアリングの、not_checkedを更新する。
   $.ajax({
     // jsonで送った、notcheckedのデータでmodelのnot_checkedを更新する
-    url: 'not_checked',
+    url: '/not_checked',
     // this data is data for sending to url
     data: {'sharing_id': <%= @sharing.id %>,'not_checked': notchecked},
     dataType: 'json'

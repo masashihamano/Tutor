@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   get '/connect/confirm', to: 'stripe#confirm', as: 'stripe_confirm'
   get '/connect/deauthorize', to: 'stripe#deauthorize', as: 'stripe_deauthorize'
 
-  get 'not_checked', to: 'sharing#not_checked'
+  get 'not_checked', to: 'sharings#not_checked'
 
   get '/search'  => 'pages#search'
 

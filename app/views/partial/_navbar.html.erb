@@ -42,7 +42,7 @@
           <% if current_user.provider.present? %>
             <!-- 認証ログイン(facebookログイン)している時 -->
 
-            <%#= image_tag current_user.image, class:"img-circle profile-0" %>
+            <%= image_tag current_user.image.url, class:"img-circle profile-0" %>
             <%= current_user.name %>
           <% else %>
             <!-- 認証ログインしてない時 -->
