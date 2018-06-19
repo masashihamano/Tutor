@@ -26,7 +26,7 @@
 						<div class="row">
 							<div class="col-md-12 select">
 								<div class="form-group">
-									<label>ペットの種類</label>
+									<label>犬種</label>
 									<%= f.select :pet_type, [["トイプードル","トイプードル"], ["チワワ","チワワ"], ["ポメラニアン","ポメラニアン"], ["柴犬","柴犬"], ["ミニチュアダックス","ミニチュアダックス"], ["パグ","パグ"], ["コーギー","コーギー"], ["フレンチブルドッグ","フレンチブルドッグ"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
 								</div>
 							</div>
@@ -36,7 +36,7 @@
 						<div class="row">
 							<div class="col-md-12 select">
 								<div class="form-group">
-									<label>ペットの年齢</label>
+									<label>年齢</label>
 									<%= f.select :breeding_years, [["0歳",0],["1歳",1], ["2歳",2], ["3歳",3], ["4歳",4], ["5歳",5], ["6歳以上",6]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
 								</div>
 							</div>
@@ -46,7 +46,7 @@
 						<div class="row">
 							<div class="col-md-12 select">
 								<div class="form-group">
-									<label>ペットのサイズ</label>
+									<label>サイズ</label>
 									<%= f.select :pet_size, [["小型","小型"], ["中型","中型"], ["大型","大型"], ["超大型","超大型"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
 								</div>
 							</div>

@@ -67,19 +67,26 @@
         </div>
           <div class="row row-space-top-4">
             <div class="col-sm-3 col-xs-3 text-center">
-              <i class="fa fa-home fa-3x"></i>
+              <%= image_tag 'plan-icon'%>
+              <!-- <i class="fa fa-home fa-3x"></i> -->
               <h5><%= @sharing.home_type %></h5>
             </div>
             <div class="col-sm-3 col-xs-3 text-center">
-              <i class="fa fa-linux fa-3x" aria-hidden="true"></i>
+              <%= image_tag 'kinds-icon'%>
+              <i aria-hidden="true"></i>
+              <!-- <i class="fa fa-linux fa-3x" aria-hidden="true"></i> -->
               <h5><%= @sharing.pet_type %></h5>
             </div>
             <div class="col-sm-3 col-xs-3 text-center">
-              <i class="fa fa-bug fa-3x" aria-hidden="true"></i>
+              <%= image_tag 'size-icon'%>
+              <i aria-hidden="true"></i>
+              <!-- <i class="fa fa-bug fa-3x" aria-hidden="true"></i> -->
               <h5><%= @sharing.pet_size %></h5>
             </div>
             <div class="col-sm-3 col-xs-3 text-center">
-              <i class="fa fa-clock-o fa-3x" aria-hidden="true"></i>
+              <%= image_tag 'old-icon'%>
+              <i aria-hidden="true"></i>
+              <!-- <i class="fa fa-clock-o fa-3x" aria-hidden="true"></i> -->
               <h5><%= @sharing.breeding_years %>年</h5>
             </div>
           </div>

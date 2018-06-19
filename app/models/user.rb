@@ -31,7 +31,7 @@ class User < ApplicationRecord
          require 'open_uri_redirections'
          # file = open(auth.info.image, :allow_redirections => :safe)
          # user.image = file
-
+       
          file = open("https://graph.facebook.com/#{auth.uid}/picture?type=large", :allow_redirections => :safe)
          user.image = file
        end

@@ -49,22 +49,20 @@
 
 
 
-            <%# if current_user.image %>
-              <%#= image_tag current_user.image class:"img-circle profile-0" %>
-            <%# else %>
-              <%#= image_tag 'avatar-default.png', class:"img-circle profile-0" %>
-            <%# end %>
+            <% if current_user.image %>
+              <%= image_tag current_user.image class:"img-circle profile-0" %>
+            <% else %>
+              <%= image_tag 'avatar-default.png', class:"img-circle profile-0" %>
+            <% end %>
 
-              <%# if current_user.name %>
-                <%#= current_user.name %>
-              <%# else %>
+              <% if current_user.name %>
+                <%= current_user.name %>
+              <% else %>
 
-<% if current_user.image.present? %>
-<%#= image_tag current_user.image, class:"img-circle profile-0" %>
-<% end %>
+
                 <%= current_user.email.split("@")[0] %>
               <!-- split("@")[0]で@より前の部分の名前を表示 -->
-              <%# end %>
+              <% end %>
             <%#= current_user.email.split("@")[0] %>
             <!-- split("@")[0]で@より前の部分の名前を表示 -->
           <% end %>
