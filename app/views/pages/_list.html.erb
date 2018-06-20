@@ -20,9 +20,9 @@
                 <%= sharing.sharing_title %>
               </div>
               <div class="col-md-2 col-xs-2">
-                <%# if sharing.user.image.present? %>
-                <%#= image_tag sharing.user.image,class:"img-circle profile-1" %>
-                <%# end %>
+                <% if sharing.user.image.present? %>
+                <%= image_tag sharing.user.image.url,class:"img-circle profile-1" %>
+                <% end %>
               </div>
             </div>
           </div>

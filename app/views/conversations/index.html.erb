@@ -13,9 +13,9 @@
             <div class="panel-body panel-conversation">
               <div class="row">
                 <div class="col-md-2 text-center row-space-1">
-                  <%# if other.image.present? %>
-                  <%#= image_tag other.image, class: "img-circle profile-1" %><br>
-                  <%# end %>
+                  <% if other.image.present? %>
+                  <%= image_tag other.image.url, class: "img-circle profile-1" %><br>
+                  <% end %>
                   <strong><%= other.name %></strong>
                 </div>
                   <%= link_to conversation_messages_path(conversation) do %>

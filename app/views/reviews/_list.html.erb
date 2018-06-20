@@ -9,9 +9,9 @@
     <hr>
     <div class="row">
       <div class="col-md-2 text-center">
-        <%# if review.user.image.present? %>
-        <%#= image_tag review.user.image, class:"img-circle profile-1" %>
-        <%# end %>
+        <% if review.user.image.present? %>
+        <%= image_tag review.user.image.url, class:"img-circle profile-1" %>
+        <% end %>
       <div class="row">
         <%= review.user.name %>
       </div>
@@ -28,7 +28,7 @@
 
         <div>
           <span class="pull-right">
-            <%= link_to "DELETE",[@sharing,review],method: :delete, data: {confirm: "削除していいですか?"}, class:"btn btn-danger" if current_user && current_user = review.user %>
+            <%= link_to "取り消す",[@sharing,review],method: :delete, data: {confirm: "削除していいですか?"}, class:"btn btn-danger" if current_user && current_user = review.user %>
             <!-- only current_user && reviewed user remove reviews -->
           </span>
         </div>

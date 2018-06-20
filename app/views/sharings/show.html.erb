@@ -48,12 +48,12 @@
         <div class="col-md-3 text-center row-space-2">
           <%= link_to user_path(@sharing.user) do %>
 
-            <%# if @sharing.user.image.present? %>
-              <%#= image_tag @sharing.user.image, class:"img-circle profile-2" %>
-            <%# end %>
+            <% if @sharing.user.image.present? %>
+              <%= image_tag @sharing.user.image.url, class:"img-circle profile-2" %>
+            <% end %>
 
             <% if current_user.image %>
-              <%= image_tag current_user.image class:"img-circle profile-2" %>
+              <%#= image_tag current_user.image.url class:"img-circle profile-2" %>
             <% else %>
               <%= image_tag 'avatar-default.png', class:"img-circle profile-2" %>
             <% end %>
@@ -243,9 +243,9 @@
                   <%= link_to sharing.sharing_title, sharing %><br>
                 </div>
                 <div class="col-md-3 col-xs-3">
-                <%# if sharing.user.image.present? %>
-                  <%#= image_tag sharing.user.image, class:"img-circle profile-1" %>
-                <%# end %>
+                <% if sharing.user.image.present? %>
+                  <%= image_tag sharing.user.image.url, class:"img-circle profile-1" %>
+                <% end %>
                 </div>
                 <div class="price-card">
                   <%= sharing.price %> 円

@@ -94,7 +94,7 @@
               <% end %>
               <div class="portfolio-caption">
                 <% if user.image.present? %>
-                <%#= image_tag user.image, class:"img-circle profile-1"%>
+                  <%= image_tag user.image.url, class:"img-circle profile-1"%>
                 <% end %>
                 <span style="font-weight: bold;"><%= user.name %>さん</span>
               </div>

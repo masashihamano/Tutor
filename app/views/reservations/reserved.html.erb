@@ -40,7 +40,7 @@
                   <div class="col-md-2 col-sm-2 col-xs-10 col-middle row-space-2">
                     <%= link_to user_path(reservation.user) do %>
                     <% if reservation.user.image.present? %>
-                      <%= image_tag reservation.user.image, class: "img-circle profile-1" %></br>
+                      <%= image_tag reservation.user.image.url, class: "img-circle profile-1" %></br>
                     <% end %>
                       <%= reservation.user.name %>
                     <% end %>

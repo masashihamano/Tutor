@@ -4,9 +4,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 text-center">
-      <%# if @other.image.present? %>
-      <%#= image_tag @other.image, class: "img-circle profile-1" %><br>
-      <%# end %>
+      <% if @other.image.present? %>
+      <%= image_tag @other.image.url, class: "img-circle profile-1" %><br>
+      <% end %>
       <strong><%= @other.name %></strong>
       <br>
       <%= link_to "プロフィールを見る", @other, class: "btn btn-default btn-wide row-space-2 row-space-top-2" %>
