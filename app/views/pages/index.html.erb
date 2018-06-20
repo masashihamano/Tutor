@@ -90,7 +90,7 @@
           <% if !user.sharings.blank?%>
             <div class="col-md-4 col-sm-6 portfolio-item row-space-2">
               <%= link_to sharing_path(user.sharings[0]) do %>
-                <%= image_tag user.sharings[0].photos[0].image.url(:medium) %>
+                <%#= image_tag user.sharings[0].photos[0].image.url(:medium) %>
               <% end %>
               <div class="portfolio-caption">
                 <% if user.image.present? %>

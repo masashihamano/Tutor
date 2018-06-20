@@ -7,7 +7,7 @@
     <div class="thumbnail">
       <%= image_tag @sharing.photos[0].image.url %>
       <% if @sharing.user.image.present? %>
-      <%#= image_tag @sharing.user.image,class:"img-circle profile-1 row-space-top-3" %>
+      <%= image_tag @sharing.user.image.url, class:"img-circle profile-1 row-space-top-3" %>
       <% end %>
       <div class="caption">
         <h4 class="text-center row-space-4">オーナーのお名前: <%= @sharing.user.name %></h4>
