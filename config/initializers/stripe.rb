@@ -4,5 +4,4 @@ Rails.configuration.stripe = {
   :client_id => ENV['STRIPE_CONNECT_CLIENT_ID']
 }
 
-
 Stripe.api_key = Rails.configuration.stripe[:secret_key]

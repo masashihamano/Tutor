@@ -48,7 +48,7 @@ gem 'private_pub'
 gem 'thin'
 # autocomplete検索以外の検索機能
 gem 'ransack'
-
+# サイトURLがhttpからhttpsへリダイレクトの際のエラーを回避
 gem 'open_uri_redirections'
 
 
