@@ -121,7 +121,7 @@
                   </div>
                 </div>
 
-                <!-- シッター料金 -->
+                <!-- レンタル料金 -->
                 <div id="sharepet_price" class="row row-space-2 hidden">
                   <div class="col-md-8 col-xs-8">
 
@@ -131,7 +131,7 @@
                   </div>
                 </div>
 
-                <!-- 手数料 -->
+                <!-- 消費税 -->
                 <div id="applicaton-fee" class="row row-space-2 hidden">
                   <div class="col-md-8 col-xs-8">
 
@@ -176,8 +176,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      <h3 class="row-space-3">このペットについて</h3>
-      <p><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %><%= @sharing.sharing_content %>
+      <h3 class="row-space-3">このわんちゃんについて</h3>
+      <p><%= @sharing.sharing_content %>
       </p>
     </div>
 
@@ -223,7 +223,7 @@
     }
   </style>
 
-  <!-- 近くのシェアペット   -->
+  <!-- 近くのシェアドッグ   -->
   <div class="row">
     <div class="col-md-9">
       <h3 class="row-space-3">近くのシェアドッグ</h3>
@@ -380,13 +380,13 @@ $( function() {
           $('#duplicate-message').addClass('hidden');
 
           var sharepet_price = days * <%= @sharing.price %> ;
-          var applicaton_fee =  Math.round(sharepet_price * 0.1) ;
+          var applicaton_fee =  Math.round(sharepet_price * 0.08) ;
           var price_total = sharepet_price + applicaton_fee;
           $('#sharepet_price').removeClass('hidden');
           $('#total-price').removeClass('hidden');
           $('#applicaton-fee').removeClass('hidden');
-          $('#sharepet_price .col-md-8').text("ペットレンタル料:"+"<%= @sharing.price %>"+"円"+" x "+days+"日");
-          $('#applicaton-fee .col-md-8').text("手数料:ペットレンタル料×10.0%");
+          $('#sharepet_price .col-md-8').text("レンタル料:"+"<%= @sharing.price %>"+"円"+" x "+days+"日");
+          $('#applicaton-fee .col-md-8').text("消費税:レンタル料×8.0%");
           $('#total-price .col-md-8').text("合計料金");
 
           $('#sharepet_price .col-md-4').text(sharepet_price+"円");
@@ -441,13 +441,13 @@ $( function() {
           $('#duplicate-message').addClass('hidden');
 
           var sharepet_price = days * <%= @sharing.price %> ;
-          var applicaton_fee =  Math.round(sharepet_price * 0.1) ;
+          var applicaton_fee =  Math.round(sharepet_price * 0.08) ;
           var price_total = sharepet_price + applicaton_fee;
           $('#sharepet_price').removeClass('hidden');
           $('#total-price').removeClass('hidden');
           $('#applicaton-fee').removeClass('hidden');
-          $('#sharepet_price .col-md-8').text("シッター料:"+"<%= @sharing.price %>"+"円"+" x "+days+"日");
-          $('#applicaton-fee .col-md-8').text("手数料:シッター料×10.0%");
+          $('#sharepet_price .col-md-8').text("レンタル料:"+"<%= @sharing.price %>"+"円"+" x "+days+"日");
+          $('#applicaton-fee .col-md-8').text("消費税:レンタル料×8.0%");
           $('#total-price .col-md-8').text("合計料金");
 
           $('#sharepet_price .col-md-4').text(sharepet_price+"円");
